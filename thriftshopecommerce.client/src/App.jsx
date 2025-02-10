@@ -8,6 +8,15 @@ function App() {
         populateWeatherData();
     }, []);
 
+    async function test() {
+        const response = await fetch('pingauth');
+
+        if (response.ok) {
+            const data = await response.json();
+            setForecasts(data);
+        }
+    }
+
     const contents = forecasts === undefined
         ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
         : <table className="table table-striped" aria-labelledby="tableLabel">
@@ -34,6 +43,7 @@ function App() {
     return (
         <div>
             <h1 id="tableLabel">Weather forecast</h1>
+            <button onClick={test}>Test</button>
             <p>This component demonstrates fetching data from the server.</p>
             {contents}
         </div>
