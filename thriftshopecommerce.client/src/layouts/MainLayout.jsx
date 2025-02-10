@@ -1,4 +1,3 @@
-import React from 'react'
 import { Outlet } from 'react-router-dom';
 import NavMain from '../components/layout/NavMain';
 import NavMarquee from '../components/home/NavMarquee';

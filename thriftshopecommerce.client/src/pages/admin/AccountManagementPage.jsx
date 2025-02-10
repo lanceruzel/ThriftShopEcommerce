@@ -1,8 +1,4 @@
-import React from 'react'
-
 function AccountManagementPage() {
-  
-
   return (
     <>
       {/* Header */}

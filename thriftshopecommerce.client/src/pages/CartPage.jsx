@@ -1,5 +1,3 @@
-import React from 'react'
-import { BsFillTrashFill } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 

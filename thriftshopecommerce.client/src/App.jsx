@@ -28,8 +28,8 @@ const router = createBrowserRouter(
         <Route path="/admin/orders" element={<OrderManagementPage />} />
         <Route path="/admin/orders/:id" element={<OrderUpdatePage />} />
         <Route path="/admin/products" element={<ProductManagementPage />} />
-        <Route path="/admin/products/:id" element={<ProductCreateAndUpdatePage mode='update'/>} />
-        <Route path="/admin/products/create" element={<ProductCreateAndUpdatePage mode='create'/>} />
+        <Route path="/admin/products/:id" element={<ProductCreateAndUpdatePage _mode='update'/>} />
+        <Route path="/admin/products/create" element={<ProductCreateAndUpdatePage _mode='create'/>} />
         <Route path="/admin/settings" element={<SettingsPage />} />
       </Route>
 

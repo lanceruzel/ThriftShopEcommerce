@@ -1,5 +1,3 @@
-import React from 'react'
-
 function CollectionSection() {
   return (
     <div className='py-5 bg-main'>

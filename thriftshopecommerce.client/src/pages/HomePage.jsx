@@ -1,4 +1,3 @@
-import React from 'react';
 import HeroSection from '../components/home/HeroSection';
 import FeaturedSection from '../components/home/FeaturedSection';
 import AnnouncementSection from '../components/home/AnnouncementSection';

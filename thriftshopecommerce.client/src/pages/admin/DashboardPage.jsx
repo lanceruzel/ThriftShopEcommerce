@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaPesoSign, FaUser, FaArrowTrendUp, FaBagShopping } from 'react-icons/fa6';
 import LineChart from '../../components/charts/LineChart';
 import PieChart from '../../components/charts/PieChart';

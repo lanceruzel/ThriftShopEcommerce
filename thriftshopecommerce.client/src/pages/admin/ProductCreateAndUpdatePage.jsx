@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-function ProductCreateAndUpdatePage(props) {
+function ProductCreateAndUpdatePage(_mode) {
   const [mode, setMode] = useState();
 
   useEffect(() => {
-    setMode(props.mode);
+      setMode(_mode);
   });
 
   return (

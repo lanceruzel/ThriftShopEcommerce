@@ -1,5 +1,3 @@
-import React from 'react'
-
 function AnnouncementSection() {
   return (
     <div className='py-5 text-bg-dark'>
