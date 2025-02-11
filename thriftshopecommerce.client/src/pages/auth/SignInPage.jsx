@@ -24,6 +24,12 @@ function SignInPage() {
         }
     });
 
+    useEffect(() => {
+        if (auth?.accessToken) {
+            navigate('/admin'); // Redirect if already signed in
+        }
+    })
+
     const validateForm = () => {
         // Define container for errors
         let errors = {
@@ -83,12 +89,6 @@ function SignInPage() {
             authenticate();
         }
     }
-
-    useEffect(() => {
-        if (auth.accessToken) {
-            navigate('/');
-        }
-    });
 
     return (
         <div className="container mx-auto py-5 d-flex justify-content-center align-items-center" style={{ height: 'calc(100vh - 10rem)'}}>
