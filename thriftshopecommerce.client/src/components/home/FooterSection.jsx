@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { BsFacebook } from "react-icons/bs";
 import { BsInstagram } from "react-icons/bs";
 import { BsTwitterX } from "react-icons/bs";
-import { SHOP_NAME, SHOP_DESCRIPTION, FACEBOOK_LINK, INSTAGRAM_LINK, TWITTER_LINK } from '../../lib/constants';
+import { SHOP_NAME, SHOP_DESCRIPTION, FACEBOOK_LINK, INSTAGRAM_LINK, TWITTER_LINK } from '../../lib/Constants';
 
 function FooterSection() {
   return (

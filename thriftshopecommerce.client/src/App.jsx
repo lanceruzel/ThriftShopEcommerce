@@ -17,36 +17,39 @@ import SignInPage from './pages/auth/SignInPage';
 import SignUpPage from './pages/auth/SignUpPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
+import PrivateRoute from './lib/auth/PrivateRoute';
 
 const router = createBrowserRouter(
-  createRoutesFromElements(
-    <>
-      <Route element={<AdminLayout />}>
-        <Route path="/admin/dashboard" element={<DashboardPage />} />
-        <Route path="/admin/accounts" element={<AccountManagementPage />} />
-        <Route path="/admin/accounts/:id" element={<AccountManagementUpdatePage />} />
-        <Route path="/admin/orders" element={<OrderManagementPage />} />
-        <Route path="/admin/orders/:id" element={<OrderUpdatePage />} />
-        <Route path="/admin/products" element={<ProductManagementPage />} />
-        <Route path="/admin/products/:id" element={<ProductCreateAndUpdatePage _mode='update'/>} />
-        <Route path="/admin/products/create" element={<ProductCreateAndUpdatePage _mode='create'/>} />
-        <Route path="/admin/settings" element={<SettingsPage />} />
-      </Route>
+    createRoutesFromElements(
+        <>
+            <Route element={<AdminLayout />}>
+                <Route element={<PrivateRoute />}>
+                    <Route path="/admin" element={<DashboardPage />} />
+                    <Route path="/admin/accounts" element={<AccountManagementPage />} />
+                    <Route path="/admin/accounts/:id" element={<AccountManagementUpdatePage />} />
+                    <Route path="/admin/orders" element={<OrderManagementPage />} />
+                    <Route path="/admin/orders/:id" element={<OrderUpdatePage />} />
+                    <Route path="/admin/products" element={<ProductManagementPage />} />
+                    <Route path="/admin/products/:id" element={<ProductCreateAndUpdatePage _mode='update' />} />
+                    <Route path="/admin/products/create" element={<ProductCreateAndUpdatePage _mode='create' />} />
+                    <Route path="/admin/settings" element={<SettingsPage />} />
+                </Route>
+            </Route>
 
-      <Route element={<MainLayout />}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/view/item/:id" element={<ItemViewPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/signin" element={<SignInPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-      </Route>
-    </>
-  )
+            <Route element={<MainLayout />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/view/item/:id" element={<ItemViewPage />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/signin" element={<SignInPage />} />
+                <Route path="/signup" element={<SignUpPage />} />
+            </Route>
+        </>
+    )
 );
 
 function App() {
-  return <RouterProvider router={router} />
+    return <RouterProvider router={router} />
 }
 
 export default App

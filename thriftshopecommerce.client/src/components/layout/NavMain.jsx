@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
-import { SHOP_NAME } from '../../lib/constants';
+import { SHOP_NAME } from '../../lib/Constants';
+import { useAuth } from '../../lib/auth/AuthContext';
 
 function NavMain() {
+    const { auth } = useAuth();
+
     return (
         <>
             <nav className="navbar sticky-top navbar-expand-lg shadow-lg bg-white">
@@ -18,9 +21,8 @@ function NavMain() {
                             <a className="nav-link fw-medium" href="#">About</a>
                             <a className="nav-link fw-medium" href="#">FAQ</a>
                             <Link className="nav-link fw-medium" to="/cart">Cart</Link>
-                            <Link className="nav-link fw-medium" to="/signin">Register</Link>
-                            <Link className="nav-link fw-medium" to="/signup">Sign In</Link>
-                            <a className="nav-link fw-medium" href="#">Sign out</a>
+                            <Link className="nav-link fw-medium" to="/signup">Register</Link>
+                            {auth?.accessToken && <Link className="nav-link fw-medium" to="/admin">Admin Management</Link> }
                         </ul>
                     </div>
                 </div>
