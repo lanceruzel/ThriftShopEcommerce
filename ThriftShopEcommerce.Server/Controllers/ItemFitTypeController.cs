@@ -6,13 +6,13 @@ using ThriftShopEcommerce.Server.Model;
 
 namespace ThriftShopEcommerce.Server.Controllers
 {
-    [Route("api/category")]
+    [Route("api/fit")]
     [ApiController]
-    public class ItemCategoryController : Controller, ICrudController<ItemCategory, int>
+    public class ItemFitTypeController : Controller, ICrudController<ItemFitType, int>
     {
         private readonly ApplicationDbContext _context;
 
-        public ItemCategoryController(ApplicationDbContext context)
+        public ItemFitTypeController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -20,11 +20,11 @@ namespace ThriftShopEcommerce.Server.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            List<ItemCategory> items = new List<ItemCategory>();
+           List<ItemFitType> items = new List<ItemFitType>();
 
             try
             {
-                items = await _context.ItemCategories.ToListAsync();
+                items = await _context.ItemFitTypes.ToListAsync();
             }
             catch (Exception ex)
             {
@@ -42,33 +42,33 @@ namespace ThriftShopEcommerce.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] ItemCategory entity)
+        public async Task<IActionResult> Create([FromBody] ItemFitType entity)
         {
             if (entity == null || string.IsNullOrWhiteSpace(entity.Name))
             {
-                return BadRequest("Invalid category data.");
+                return BadRequest("Invalid fit type data.");
             }
 
             try
             {
-                _context.ItemCategories.Add(entity);
+                _context.ItemFitTypes.Add(entity);
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
-                return StatusCode(500, "An error occurred while creating the category.");
+                return StatusCode(500, "An error occurred while creating the fit type.");
             }
 
             return Ok(entity);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] ItemCategory entity)
+        public async Task<IActionResult> Update(int id, [FromBody] ItemFitType entity)
         {
             if (entity == null || entity.Id <= 0 || string.IsNullOrWhiteSpace(entity.Name))
             {
-                return BadRequest("Invalid category data.");
+                return BadRequest("Invalid fit type data.");
             }
 
             if (id != entity.Id)
@@ -78,18 +78,18 @@ namespace ThriftShopEcommerce.Server.Controllers
 
             try
             {
-                var existingCategory = await _context.ItemCategories.FindAsync(entity.Id);
-                if (existingCategory == null)
+                var existingFitType = await _context.ItemFitTypes.FindAsync(entity.Id);
+                if (existingFitType == null)
                 {
-                    return NotFound($"Category with ID {entity.Id} not found.");
+                    return NotFound($"ItemFitType with ID {entity.Id} not found.");
                 }
 
-                // Update the category
-                existingCategory.Name = entity.Name;
-                _context.ItemCategories.Update(existingCategory);
+                // Update the Fit Type
+                existingFitType.Name = entity.Name;
+                _context.ItemFitTypes.Update(existingFitType);
                 await _context.SaveChangesAsync();
 
-                return Ok(existingCategory);
+                return Ok(existingFitType);
             }
             catch (Exception ex)
             {
@@ -102,21 +102,21 @@ namespace ThriftShopEcommerce.Server.Controllers
         {
             if (id <= 0)
             {
-                return BadRequest("Invalid category ID.");
+                return BadRequest("Invalid FitType ID.");
             }
 
             try
             {
-                var category = await _context.ItemCategories.FindAsync(id);
-                if (category == null)
+                var fitType = await _context.ItemFitTypes.FindAsync(id);
+                if (fitType == null)
                 {
-                    return NotFound($"Category with ID {id} not found.");
+                    return NotFound($"FitType with ID {id} not found.");
                 }
 
-                _context.ItemCategories.Remove(category);
+                _context.ItemFitTypes.Remove(fitType);
                 await _context.SaveChangesAsync();
 
-                return Ok($"Category with ID {id} deleted successfully.");
+                return Ok($"FitType with ID {id} deleted successfully.");
             }
             catch (Exception ex)
             {
