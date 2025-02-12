@@ -35,7 +35,7 @@ namespace ThriftShopEcommerce.Server.Controllers
             return Ok(items);
         }
 
-        [HttpPut("{id}")]
+        [HttpGet("{id}")]
         public Task<IActionResult> Show(int id)
         {
             return null;
