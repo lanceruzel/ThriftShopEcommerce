@@ -66,20 +66,20 @@ namespace ThriftShopEcommerce.Server
             app.MapStaticAssets();
             app.MapIdentityApi<User>();
 
-            #region CustomEndPoints
-            //Logout
-            app.MapPost("/logout", async (SignInManager<User> signInManager) =>
-            {
-                await signInManager.SignOutAsync();
-                return Results.Ok();
-            }).RequireAuthorization();
+            #region CustomAuthEndPoints
+                //Logout
+                app.MapPost("/logout", async (SignInManager<User> signInManager) =>
+                {
+                    await signInManager.SignOutAsync();
+                    return Results.Ok();
+                }).RequireAuthorization();
 
-            //Ping Auth
-            app.MapPost("/pingauth", async (ClaimsPrincipal user) =>
-            {
-                var email = user.FindFirstValue(ClaimTypes.Email);  //Get authenticated user's email
-                return Results.Json(new { Email = email });         //Return the authenticated user's email as plaintext response
-            }).RequireAuthorization();
+                //Ping Auth
+                app.MapPost("/pingauth", async (ClaimsPrincipal user) =>
+                {
+                    var email = user.FindFirstValue(ClaimTypes.Email);  //Get authenticated user's email
+                    return Results.Json(new { Email = email });         //Return the authenticated user's email as plaintext response
+                }).RequireAuthorization();
             #endregion
 
             // Configure the HTTP request pipeline.
