@@ -17,6 +17,6 @@ namespace ThriftShopEcommerce.Server.Model
         public float? LegOpening { get; set; }
 
         //
-        public Item Item { get; set; }
+        public Item? Item { get; set; }
     }
 }

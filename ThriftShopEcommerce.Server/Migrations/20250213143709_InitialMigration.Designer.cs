@@ -12,7 +12,7 @@ using ThriftShopEcommerce.Server.Data;
 namespace ThriftShopEcommerce.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250212140518_InitialMigration")]
+    [Migration("20250213143709_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -165,10 +165,6 @@ namespace ThriftShopEcommerce.Server.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Code")
                         .IsRequired()

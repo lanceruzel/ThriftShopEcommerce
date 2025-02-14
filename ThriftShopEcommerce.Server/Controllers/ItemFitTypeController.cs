@@ -20,19 +20,16 @@ namespace ThriftShopEcommerce.Server.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-           List<ItemFitType> items = new List<ItemFitType>();
-
             try
             {
-                items = await _context.ItemFitTypes.ToListAsync();
+                var items = await _context.ItemFitTypes.ToListAsync();
+                return Ok(items);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
                 return StatusCode(500, "An error occured while fetching data.");
             }
-
-            return Ok(items);
         }
 
         [HttpGet("{id}")]
@@ -53,14 +50,13 @@ namespace ThriftShopEcommerce.Server.Controllers
             {
                 _context.ItemFitTypes.Add(entity);
                 await _context.SaveChangesAsync();
+                return Ok(entity);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
                 return StatusCode(500, "An error occurred while creating the fit type.");
             }
-
-            return Ok(entity);
         }
 
         [HttpPut("{id}")]

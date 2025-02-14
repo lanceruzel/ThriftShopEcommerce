@@ -20,19 +20,16 @@ namespace ThriftShopEcommerce.Server.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            List<ItemCategory> items = new List<ItemCategory>();
-
             try
             {
-                items = await _context.ItemCategories.ToListAsync();
+                var items = await _context.ItemCategories.ToListAsync();
+                return Ok(items);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
                 return StatusCode(500, "An error occured while fetching data.");
             }
-
-            return Ok(items);
         }
 
         [HttpGet("{id}")]
@@ -53,14 +50,13 @@ namespace ThriftShopEcommerce.Server.Controllers
             {
                 _context.ItemCategories.Add(entity);
                 await _context.SaveChangesAsync();
+                return Ok(entity);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
                 return StatusCode(500, "An error occurred while creating the category.");
             }
-
-            return Ok(entity);
         }
 
         [HttpPut("{id}")]
@@ -108,6 +104,7 @@ namespace ThriftShopEcommerce.Server.Controllers
             try
             {
                 var category = await _context.ItemCategories.FindAsync(id);
+
                 if (category == null)
                 {
                     return NotFound($"Category with ID {id} not found.");
