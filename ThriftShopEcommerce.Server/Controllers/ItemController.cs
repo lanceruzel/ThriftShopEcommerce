@@ -4,11 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using ThriftShopEcommerce.Server.Data;
 using ThriftShopEcommerce.Server.Interfaces;
 using ThriftShopEcommerce.Server.Model;
+using ThriftShopEcommerce.Server.Models;
 using ThriftShopEcommerce.Server.Models.DTO;
 
 namespace ThriftShopEcommerce.Server.Controllers
 {
-    [Route("api/item")]
+    [Route("/item")]
     [ApiController]
     public class ItemController : Controller, ICrudController<Item, int>
     {
@@ -83,6 +84,7 @@ namespace ThriftShopEcommerce.Server.Controllers
                         NewPrice = dto.NewPrice,
                         ItemCategoryId = dto.ItemCategoryId,
                         ItemFitTypeId = dto.ItemFitTypeId,
+                        ItemCollectionId = dto.ItemCollectionId,
                         Images = JsonSerializer.Serialize(savedImagePaths),
                     };
 
@@ -201,7 +203,6 @@ namespace ThriftShopEcommerce.Server.Controllers
                         }
                     }
 
-
                     item.Code = dto.Code;
                     item.Description = dto.Description;
                     item.Gender = dto.Gender;
@@ -209,6 +210,7 @@ namespace ThriftShopEcommerce.Server.Controllers
                     item.NewPrice = dto.NewPrice;
                     item.ItemCategoryId = dto.ItemCategoryId;
                     item.ItemFitTypeId = dto.ItemFitTypeId;
+                    item.ItemCollectionId = dto.ItemCollectionId;
                     item.Images = JsonSerializer.Serialize(updatedImages);
 
                     // Update the existing itemsize and create new if not exists

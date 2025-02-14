@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Models;
 using ThriftShopEcommerce.Server.Data;
 using ThriftShopEcommerce.Server.Model;
@@ -30,6 +31,14 @@ namespace ThriftShopEcommerce.Server
             {
                 options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
                 options.JsonSerializerOptions.WriteIndented = true;
+            });
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    policy => policy.AllowAnyOrigin()
+                                    .AllowAnyMethod()
+                                    .AllowAnyHeader());
             });
 
             builder.Services.AddAuthorization();
@@ -97,6 +106,15 @@ namespace ThriftShopEcommerce.Server
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowAllOrigins");
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), "Uploads")),
+                RequestPath = "/Uploads"
+            });
 
             app.UseAuthorization();
 

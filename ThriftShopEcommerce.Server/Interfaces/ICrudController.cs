@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ThriftShopEcommerce.Server.Model;
 
 namespace ThriftShopEcommerce.Server.Interfaces
 {
@@ -17,6 +18,6 @@ namespace ThriftShopEcommerce.Server.Interfaces
         Task<IActionResult> Update(TKey id, [FromBody] T entity);
 
         // Delete an item
-        Task<IActionResult> Delete(TKey id);      
+        Task<IActionResult> Delete(TKey id);
     }
 }

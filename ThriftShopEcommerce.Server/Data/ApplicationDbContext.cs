@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ThriftShopEcommerce.Server.Model;
+using ThriftShopEcommerce.Server.Models;
 
 namespace ThriftShopEcommerce.Server.Data
 {
@@ -10,6 +11,7 @@ namespace ThriftShopEcommerce.Server.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<Item> Items { get; set; }
+        public DbSet<ItemCollection> ItemCollections { get; set; }
         public DbSet<ItemCategory> ItemCategories { get; set; }
         public DbSet<ItemFitType> ItemFitTypes { get; set; }
         public DbSet<ItemSize> ItemSizes { get; set; }
@@ -46,6 +48,13 @@ namespace ThriftShopEcommerce.Server.Data
                 .HasOne(i => i.ItemCategory)
                 .WithMany(c => c.Items)
                 .HasForeignKey(i => i.ItemCategoryId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            // Item -> ItemCollection (Many to One)
+            builder.Entity<Item>()
+                .HasOne(i => i.ItemCollection)
+                .WithMany(c => c.Items)
+                .HasForeignKey(i => i.ItemCollectionId)
                 .OnDelete(DeleteBehavior.SetNull);
 
             // Item -> ItemFitType (Many to One)

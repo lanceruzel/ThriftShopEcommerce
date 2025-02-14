@@ -1,3 +1,6 @@
+export const TARGETAPI = 'https://localhost:7125';
+export const IMAGE_PATH = `${TARGETAPI}/Uploads/Images`;
+
 export const SHOP_NAME = 'ThriftShop';
 export const SHOP_DESCRIPTION = 'Short Description for the shop';
 

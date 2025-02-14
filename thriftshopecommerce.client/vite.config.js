@@ -67,6 +67,22 @@ export default defineConfig({
                 target,
                 secure: false
             },
+            '^/item': {
+                target,
+                secure: false
+            },
+            '^/item/\\d+$': {
+                target,
+                secure: false
+            },
+            '^/collection': {
+                target,
+                secure: false
+            },
+            '^/collection/\\d+$': {
+                target,
+                secure: false
+            },
         },
         port: 58551,
         https: {

@@ -32,6 +32,9 @@ namespace ThriftShopEcommerce.Server.Models.DTO
         [Required]
         public int? ItemCategoryId { get; set; }
 
+        [Required]
+        public int? ItemCollectionId { get; set; }
+
         // Size Details
         public float? Shoulder { get; set; }
         public float? Chest { get; set; }

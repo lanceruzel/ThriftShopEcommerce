@@ -6,7 +6,7 @@ using ThriftShopEcommerce.Server.Model;
 
 namespace ThriftShopEcommerce.Server.Controllers
 {
-    [Route("api/fit")]
+    [Route("/fit")]
     [ApiController]
     public class ItemFitTypeController : Controller, ICrudController<ItemFitType, int>
     {

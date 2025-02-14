@@ -189,6 +189,9 @@ namespace ThriftShopEcommerce.Server.Migrations
                     b.Property<int?>("ItemCategoryId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ItemCollectionId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ItemFitTypeId")
                         .HasColumnType("int");
 
@@ -206,6 +209,8 @@ namespace ThriftShopEcommerce.Server.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ItemCategoryId");
+
+                    b.HasIndex("ItemCollectionId");
 
                     b.HasIndex("ItemFitTypeId");
 
@@ -514,6 +519,27 @@ namespace ThriftShopEcommerce.Server.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("ThriftShopEcommerce.Server.Models.ItemCollection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ItemCollections");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -572,12 +598,19 @@ namespace ThriftShopEcommerce.Server.Migrations
                         .HasForeignKey("ItemCategoryId")
                         .OnDelete(DeleteBehavior.SetNull);
 
+                    b.HasOne("ThriftShopEcommerce.Server.Models.ItemCollection", "ItemCollection")
+                        .WithMany("Items")
+                        .HasForeignKey("ItemCollectionId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("ThriftShopEcommerce.Server.Model.ItemFitType", "ItemFitType")
                         .WithMany("Items")
                         .HasForeignKey("ItemFitTypeId")
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("ItemCategory");
+
+                    b.Navigation("ItemCollection");
 
                     b.Navigation("ItemFitType");
                 });
@@ -633,6 +666,11 @@ namespace ThriftShopEcommerce.Server.Migrations
             modelBuilder.Entity("ThriftShopEcommerce.Server.Model.Order", b =>
                 {
                     b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("ThriftShopEcommerce.Server.Models.ItemCollection", b =>
+                {
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

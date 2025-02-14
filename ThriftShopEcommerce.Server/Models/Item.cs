@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
+using ThriftShopEcommerce.Server.Models;
 
 namespace ThriftShopEcommerce.Server.Model
 {
@@ -42,6 +43,9 @@ namespace ThriftShopEcommerce.Server.Model
 
         public int? ItemFitTypeId { get; set; }
         public ItemFitType? ItemFitType { get; set; }
+
+        public int? ItemCollectionId { get; set; }
+        public ItemCollection? ItemCollection { get; set; }
 
         public List<OrderItem>? OrderItems { get; set; }
     }

@@ -66,6 +66,20 @@ namespace ThriftShopEcommerce.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ItemCollections",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ItemCollections", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ItemFitTypes",
                 columns: table => new
                 {
@@ -225,7 +239,8 @@ namespace ThriftShopEcommerce.Server.Migrations
                     LastUpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Images = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ItemCategoryId = table.Column<int>(type: "int", nullable: true),
-                    ItemFitTypeId = table.Column<int>(type: "int", nullable: true)
+                    ItemFitTypeId = table.Column<int>(type: "int", nullable: true),
+                    ItemCollectionId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -234,6 +249,12 @@ namespace ThriftShopEcommerce.Server.Migrations
                         name: "FK_Items_ItemCategories_ItemCategoryId",
                         column: x => x.ItemCategoryId,
                         principalTable: "ItemCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                    table.ForeignKey(
+                        name: "FK_Items_ItemCollections_ItemCollectionId",
+                        column: x => x.ItemCollectionId,
+                        principalTable: "ItemCollections",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
@@ -370,6 +391,11 @@ namespace ThriftShopEcommerce.Server.Migrations
                 column: "ItemCategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Items_ItemCollectionId",
+                table: "Items",
+                column: "ItemCollectionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Items_ItemFitTypeId",
                 table: "Items",
                 column: "ItemFitTypeId");
@@ -423,6 +449,9 @@ namespace ThriftShopEcommerce.Server.Migrations
 
             migrationBuilder.DropTable(
                 name: "ItemCategories");
+
+            migrationBuilder.DropTable(
+                name: "ItemCollections");
 
             migrationBuilder.DropTable(
                 name: "ItemFitTypes");

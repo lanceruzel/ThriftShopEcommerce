@@ -6,7 +6,7 @@ using ThriftShopEcommerce.Server.Model;
 
 namespace ThriftShopEcommerce.Server.Controllers
 {
-    [Route("api/category")]
+    [Route("/category")]
     [ApiController]
     public class ItemCategoryController : Controller, ICrudController<ItemCategory, int>
     {
