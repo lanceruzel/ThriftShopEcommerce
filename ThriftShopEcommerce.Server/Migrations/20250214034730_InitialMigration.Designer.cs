@@ -12,7 +12,7 @@ using ThriftShopEcommerce.Server.Data;
 namespace ThriftShopEcommerce.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250213143709_InitialMigration")]
+    [Migration("20250214034730_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />

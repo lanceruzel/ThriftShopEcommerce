@@ -13,13 +13,13 @@ namespace ThriftShopEcommerce.Server.Model
         public int ItemId { get; set; }
 
         [ForeignKey("ItemId")]
-        public Item Item { get; set; }
+        public Item? Item { get; set; }
 
         //
         [Required]
         public int OrderId { get; set; }
 
         [ForeignKey("OrderId")]
-        public Order Order { get; set; }
+        public Order? Order { get; set; }
     }
 }
