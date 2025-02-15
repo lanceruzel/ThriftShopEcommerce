@@ -18,6 +18,8 @@ import SignUpPage from './pages/auth/SignUpPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import PrivateRoute from './lib/auth/PrivateRoute';
+import CollectionManagementPage from './pages/admin/CollectionManagementPage';
+import CollectionCreateAndUpdatePage from './pages/admin/CollectionCreateAndUpdatePage';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -32,6 +34,9 @@ const router = createBrowserRouter(
                     <Route path="/admin/products" element={<ProductManagementPage />} />
                     <Route path="/admin/products/:id" element={<ProductCreateAndUpdatePage _mode='update' />} />
                     <Route path="/admin/products/create" element={<ProductCreateAndUpdatePage _mode='create' />} />
+                    <Route path="/admin/collections" element={<CollectionManagementPage />} />
+                    <Route path="/admin/collections/:id" element={<CollectionCreateAndUpdatePage _mode='update' />} />
+                    <Route path="/admin/collections/create" element={<CollectionCreateAndUpdatePage _mode='create' />} />
                     <Route path="/admin/settings" element={<SettingsPage />} />
                 </Route>
             </Route>

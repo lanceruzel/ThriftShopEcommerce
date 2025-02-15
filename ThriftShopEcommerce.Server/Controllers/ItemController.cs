@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using ThriftShopEcommerce.Server.Data;
 using ThriftShopEcommerce.Server.Interfaces;
 using ThriftShopEcommerce.Server.Model;
@@ -15,11 +16,12 @@ namespace ThriftShopEcommerce.Server.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
-
+        private readonly ILogger<WeatherForecastController> _logger;
         private readonly string imagesDirectory;
 
-        public ItemController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
+        public ItemController(ILogger<WeatherForecastController> logger, ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
+            _logger = logger;
             _context = context;
             _webHostEnvironment = webHostEnvironment;
             imagesDirectory = Path.Combine(_webHostEnvironment.ContentRootPath, "Uploads", "Images", "Products");
@@ -119,15 +121,12 @@ namespace ThriftShopEcommerce.Server.Controllers
                             System.IO.File.Delete(fullPath);
                         }
                     }
-
-                    Console.WriteLine($"Database Error: {ex.Message}");
-                    return StatusCode(500, "An error occurred while saving the item to the database.");
+                    return StatusCode(500, $"An error occurred while saving the item to the database: {ex.Message}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"General Error: {ex.Message}");
-                return StatusCode(500, "An unexpected error occurred.");
+                return StatusCode(500, $"An unexpected error occurred: {ex.Message}");
             }
         }
 
@@ -164,12 +163,18 @@ namespace ThriftShopEcommerce.Server.Controllers
 
                 List<string> updatedImages = new List<string>(existingImages);
                 
-
                 try
                 {
                     //Delete removed images
                     if (dto.RemovedImages != null && dto.RemovedImages.Count > 0)
                     {
+
+                        if (dto.RemovedImages.Count == 1 && dto.RemovedImages[0].StartsWith("["))
+                        {
+                            // Deserialize the JSON string into a List<string>
+                            dto.RemovedImages = JsonSerializer.Deserialize<List<string>>(dto.RemovedImages[0]);
+                        }
+
                         foreach (var imageName in dto.RemovedImages)
                         {
                             string imagePath = Path.Combine(imagesDirectory, imageName);
@@ -263,8 +268,7 @@ namespace ThriftShopEcommerce.Server.Controllers
                         }
                     }
 
-                    Console.WriteLine($"Database Error: {ex.Message}");
-                    return StatusCode(500, "An error occurred while updating the item.");
+                    return StatusCode(500, $"An error occurred while updating the item: {ex.Message}");
                 }
             }
             catch (Exception ex)
@@ -280,8 +284,7 @@ namespace ThriftShopEcommerce.Server.Controllers
                     }
                 }
 
-                Console.WriteLine($"General Error: {ex.Message}");
-                return StatusCode(500, "An unexpected error occurred.");
+                return StatusCode(500, $"An unexpected error occurred: {ex.Message}");
             }
         }
 

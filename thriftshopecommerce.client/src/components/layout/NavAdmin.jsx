@@ -29,9 +29,9 @@ function Sidebar() {
                             <NavLink to='/admin' className="nav-link" end>Dashboard</NavLink>
                         </li>
 
-                        <li className="nav-item">
-                            <NavLink to='/admin/accounts' className="nav-link" href="#">Account Management</NavLink>
-                        </li>
+                        {/*<li className="nav-item">*/}
+                        {/*    <NavLink to='/admin/accounts' className="nav-link" href="#">Account Management</NavLink>*/}
+                        {/*</li>*/}
 
                         <li className="nav-item">
                             <NavLink to='/admin/orders' className="nav-link" href="#">Order Management</NavLink>
@@ -39,6 +39,10 @@ function Sidebar() {
 
                         <li className="nav-item">
                             <NavLink to='/admin/products' className="nav-link" href="#">Product Management</NavLink>
+                        </li>
+
+                        <li className="nav-item">
+                            <NavLink to='/admin/collections' className="nav-link" href="#">Collection Management</NavLink>
                         </li>
 
                         <li className="nav-item">

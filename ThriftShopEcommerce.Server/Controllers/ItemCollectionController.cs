@@ -32,6 +32,12 @@ namespace ThriftShopEcommerce.Server.Controllers
         {
             try
             {
+                // Ensure images directory exists
+                if (!Directory.Exists(imagesDirectory))
+                {
+                    Directory.CreateDirectory(imagesDirectory);
+                }
+
                 // Rename image file
                 string newFileName = $"{Guid.NewGuid()}{Path.GetExtension(entity.ImageFile!.FileName)}";
 
@@ -79,6 +85,12 @@ namespace ThriftShopEcommerce.Server.Controllers
                 if (itemCollection == null)
                 {
                     return NotFound();
+                }
+
+                // Ensure images directory exists
+                if (!Directory.Exists(imagesDirectory))
+                {
+                    Directory.CreateDirectory(imagesDirectory);
                 }
 
                 string newFileName = itemCollection.Image;

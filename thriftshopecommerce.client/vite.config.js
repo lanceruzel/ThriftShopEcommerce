@@ -83,6 +83,22 @@ export default defineConfig({
                 target,
                 secure: false
             },
+            '^/category': {
+                target,
+                secure: false
+            },
+            '^/category/\\d+$': {
+                target,
+                secure: false
+            },
+            '^/fit': {
+                target,
+                secure: false
+            },
+            '^/fit/\\d+$': {
+                target,
+                secure: false
+            },
         },
         port: 58551,
         https: {
