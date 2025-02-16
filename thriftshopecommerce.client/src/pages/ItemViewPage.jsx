@@ -24,12 +24,6 @@ function ItemViewPage() {
         alert('success');
     }
 
-    //const products = ["Laptop", "Phone", "Tablet"];
-    //localStorage.setItem("products", JSON.stringify(products));
-
-    //const savedProducts = JSON.parse(localStorage.getItem("products"));
-    //console.log(savedProducts); // ["Laptop", "Phone", "Tablet"]
-
     useEffect(() => {
         setFormattedImgs(JSON.parse(item.images));
     }, [item])

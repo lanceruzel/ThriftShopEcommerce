@@ -15,7 +15,7 @@ import SettingsPage from './pages/admin/SettingsPage';
 import ItemViewPage, { itemLoader } from './pages/ItemViewPage';
 import SignInPage from './pages/auth/SignInPage';
 import SignUpPage from './pages/auth/SignUpPage';
-import CartPage, { cartItemsLoader } from './pages/CartPage';
+import CartPage from './pages/CartPage';
 import CheckoutPage, { cartItemsLoaderCheckout } from './pages/CheckoutPage';
 import PrivateRoute from './lib/auth/PrivateRoute';
 import CollectionManagementPage from './pages/admin/CollectionManagementPage';
@@ -44,7 +44,7 @@ const router = createBrowserRouter(
             <Route element={<MainLayout />}>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/view/item/:id" element={<ItemViewPage />} loader={itemLoader} />
-                <Route path="/cart" element={<CartPage />} loader={cartItemsLoader} />
+                <Route path="/cart" element={<CartPage />}  />
                 <Route path="/checkout" element={<CheckoutPage />} loader={cartItemsLoaderCheckout} />
                 <Route path="/signin" element={<SignInPage />} />
                 <Route path="/signup" element={<SignUpPage />} />
