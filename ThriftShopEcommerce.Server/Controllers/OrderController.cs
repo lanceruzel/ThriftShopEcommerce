@@ -11,10 +11,12 @@ namespace ThriftShopEcommerce.Server.Controllers
     public class OrderController : Controller, ICrudController<Order, int>
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<OrderController> _logger;
 
-        public OrderController(ApplicationDbContext context)
+        public OrderController(ApplicationDbContext context, ILogger<OrderController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [HttpPost]

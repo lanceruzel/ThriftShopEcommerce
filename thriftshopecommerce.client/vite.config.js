@@ -103,6 +103,14 @@ export default defineConfig({
                 target,
                 secure: false
             },
+            '^/order': {
+                target,
+                secure: false
+            },
+            '^/order/\\d+$': {
+                target,
+                secure: false
+            },
         },
         port: 58551,
         https: {

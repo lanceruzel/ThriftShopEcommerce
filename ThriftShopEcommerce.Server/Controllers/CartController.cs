@@ -21,14 +21,21 @@ namespace ThriftShopEcommerce.Server.Controllers
         {
             if (cartRequest.Id == null || !cartRequest.Id.Any())
             {
-                return BadRequest("Cart is empty.");
+                return StatusCode(400, "Cart is empty.");
             }
 
-            var items = await _context.Items
+            try
+            {
+                var items = await _context.Items
                 .Where(item => cartRequest.Id.Contains(item.Id))
                 .ToListAsync();
 
-            return Ok(items);
+                return Ok(items);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occured while fetching data.");
+            }
         }
     }
 }

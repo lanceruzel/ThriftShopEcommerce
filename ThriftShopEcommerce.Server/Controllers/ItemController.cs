@@ -16,10 +16,10 @@ namespace ThriftShopEcommerce.Server.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<ItemController> _logger;
         private readonly string imagesDirectory;
 
-        public ItemController(ILogger<WeatherForecastController> logger, ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
+        public ItemController(ILogger<ItemController> logger, ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _logger = logger;
             _context = context;
