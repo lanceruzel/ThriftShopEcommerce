@@ -8,8 +8,6 @@ function CollectionSection({ collections = [] }) {
         return null; // Prevents rendering if items is incorrect
     }
 
-    console.log(collections);
-
     return (
         <div className='py-5 bg-main'>
             <div className='container'>

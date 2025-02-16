@@ -99,6 +99,10 @@ export default defineConfig({
                 target,
                 secure: false
             },
+            '^/cart': {
+                target,
+                secure: false
+            },
         },
         port: 58551,
         https: {

@@ -12,11 +12,11 @@ import OrderUpdatePage from './pages/admin/OrderUpdatePage';
 import ProductManagementPage from './pages/admin/ProductManagementPage';
 import ProductCreateAndUpdatePage from './pages/admin/ProductCreateAndUpdatePage';
 import SettingsPage from './pages/admin/SettingsPage';
-import ItemViewPage from './pages/ItemViewPage';
+import ItemViewPage, { itemLoader } from './pages/ItemViewPage';
 import SignInPage from './pages/auth/SignInPage';
 import SignUpPage from './pages/auth/SignUpPage';
-import CartPage from './pages/CartPage';
-import CheckoutPage from './pages/CheckoutPage';
+import CartPage, { cartItemsLoader } from './pages/CartPage';
+import CheckoutPage, { cartItemsLoaderCheckout } from './pages/CheckoutPage';
 import PrivateRoute from './lib/auth/PrivateRoute';
 import CollectionManagementPage from './pages/admin/CollectionManagementPage';
 import CollectionCreateAndUpdatePage from './pages/admin/CollectionCreateAndUpdatePage';
@@ -43,9 +43,9 @@ const router = createBrowserRouter(
 
             <Route element={<MainLayout />}>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/view/item/:id" element={<ItemViewPage />} />
-                <Route path="/cart" element={<CartPage />} />
-                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/view/item/:id" element={<ItemViewPage />} loader={itemLoader} />
+                <Route path="/cart" element={<CartPage />} loader={cartItemsLoader} />
+                <Route path="/checkout" element={<CheckoutPage />} loader={cartItemsLoaderCheckout} />
                 <Route path="/signin" element={<SignInPage />} />
                 <Route path="/signup" element={<SignUpPage />} />
             </Route>

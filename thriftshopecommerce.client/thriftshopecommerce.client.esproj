@@ -10,6 +10,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="lib\" />
-    <Folder Include="src\components\form\" />
   </ItemGroup>
 </Project>

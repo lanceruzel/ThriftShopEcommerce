@@ -15,7 +15,8 @@ function HomePage() {
             const data = await res.json();
 
             if (res.ok) {
-                setItems(data.$values);
+                const filteredItems = data.$values.filter(item => !item.$ref);
+                setItems(filteredItems);
             }
         } catch (error) {
             console.error(error);
